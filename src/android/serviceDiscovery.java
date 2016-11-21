@@ -7,8 +7,16 @@ import java.io.IOException;
 
 public class serviceDiscovery extends CordovaPlugin {
 
-    @Override
+	@Override
     public boolean execute(String action, JSONArray data, final CallbackContext callbackContext) throws JSONException {
+		
+		/*
+        if (action.equals("getNetworkServices")) {
+			return true;
+		}
+		
+		return false;
+		*/
 
         final cordovaSSDP mCordovaSSDP = new cordovaSSDP(this.cordova.getActivity().getApplicationContext());
 
@@ -33,5 +41,6 @@ public class serviceDiscovery extends CordovaPlugin {
             return false;
 
         }
+		
     }
 }
