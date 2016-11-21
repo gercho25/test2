@@ -88,7 +88,7 @@ public class cordovaSSDP extends CordovaPlugin {
         // Clear the cached Device List every time a new search is called
 		JSONArray deviceList = new JSONArray();
 
-        Log.v(TAG, "srcAddress" + srcAddress);
+        LOG.d(TAG, "srcAddress" + srcAddress);
 		
 		
 		
@@ -121,11 +121,11 @@ public class cordovaSSDP extends CordovaPlugin {
             multicast = new MulticastSocket(null);
             multicast.bind(srcAddress);
             multicast.setTimeToLive(4);
-			Log.v(TAG, "Send multicast request...");
+			LOG.d(TAG, "Send multicast request...");
             // ----- Sending multi-cast packet ----- //
             multicast.send(discoveryPacket);
         } finally {
-			Log.v(TAG, "Multicast ends. Close connection....");
+			LOG.d(TAG, "Multicast ends. Close connection....");
             multicast.disconnect();
             multicast.close();
         }
@@ -139,7 +139,7 @@ public class cordovaSSDP extends CordovaPlugin {
 
             while (true) {
                 try {
-					Log.v(TAG, "Receive ssdp");
+					LOG.d(TAG, "Receive ssdp");
                     receivePacket = new DatagramPacket(new byte[1536], 1536);
                     wildSocket.receive(receivePacket);
                     String message = new String(receivePacket.getData());   
@@ -155,8 +155,8 @@ public class cordovaSSDP extends CordovaPlugin {
                         e.printStackTrace();
                     }
                 } catch (SocketTimeoutException e) {
-					Log.v(TAG, "Time out");
-                    Log.v(TAG, "" + deviceList);
+					LOG.d(TAG, "Time out");
+                    LOG.d(TAG, "" + deviceList);
                     callbackContext.success(deviceList);
                     break;
                 }
