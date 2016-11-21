@@ -16,7 +16,7 @@ public class serviceDiscovery extends CordovaPlugin {
 
 			//callbackContext.success("aaa-bbb-ccc");
 			
-            final String service = args.getString(0);
+            final String service = "ssdp:all"; //args.getString(0);
 
             cordova.getThreadPool().execute(new Runnable() {
                @Override
