@@ -2,7 +2,11 @@ var exec = require('cordova/exec');
 
 var serviceDiscovery = {
     getNetworkServices:function(service, addConfigXML, successCallback, errorCallback) {
-		exec(successCallback, errorCallback, "serviceDiscovery", "getNetworkServices", [service]);
+			var processResponse = function(data) {
+				successCallback(data);
+			}
+    	};
+        exec(processResponse, errorCallback, "serviceDiscovery", "getNetworkServices", [service]);
     }
 };
 
