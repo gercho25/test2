@@ -87,7 +87,7 @@ public class cordovaSSDP extends CordovaPlugin {
 		
 		
 		
-		callbackContext.success(mDeviceList);
+		//callbackContext.success(mDeviceList);
 		
 		
 		
@@ -95,7 +95,7 @@ public class cordovaSSDP extends CordovaPlugin {
 		
 		
 
-		/*
+
         // M-Search Packet
         StringBuffer discoveryMessage = new StringBuffer();
         discoveryMessage.append("M-SEARCH * HTTP/1.1\r\n");
@@ -155,7 +155,10 @@ public class cordovaSSDP extends CordovaPlugin {
                 wildSocket.close();
             }
         }
-		*/
+		
+		//TODO G: 
+		callbackContext.success("zzz...");
+		
     }
 
 }
