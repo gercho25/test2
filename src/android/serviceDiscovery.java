@@ -6,9 +6,12 @@ import org.json.JSONException;
 import java.io.IOException;
 
 public class serviceDiscovery extends CordovaPlugin {
+	
+	CallbackContext context;
 
 	@Override
     public boolean execute(String action, JSONArray data, CallbackContext callbackContext) throws JSONException {
+		context = callbackContext;
 		
 		/*
         if (action.equals("getNetworkServices")) {
@@ -28,7 +31,7 @@ public class serviceDiscovery extends CordovaPlugin {
                @Override
                public void run() {
                   try{
-                      mCordovaSSDP.search(service,callbackContext);
+                      mCordovaSSDP.search(service, context); //callbackContext);
                     }catch(IOException e){
                       e.printStackTrace();
                     }
