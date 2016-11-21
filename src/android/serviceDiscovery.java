@@ -15,7 +15,7 @@ public class serviceDiscovery extends CordovaPlugin {
 
         if (action.equals("getNetworkServices")) {
 
-			callbackContext.success('aaa-bbb-ccc');
+			callbackContext.success("aaa-bbb-ccc");
 			/*
             final String service = data.getString(0);
 
