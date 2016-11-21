@@ -14,7 +14,7 @@ public class serviceDiscovery extends CordovaPlugin {
 
         if (action.equals("getNetworkServices")) {
 			
-            final String service = args.getString(0); //"ssdp:all"; //
+            final String service = args.optString(0); //"ssdp:all"; //
 
             cordova.getThreadPool().execute(new Runnable() {
                @Override
