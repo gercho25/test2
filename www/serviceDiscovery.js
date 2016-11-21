@@ -6,4 +6,4 @@ var serviceDiscovery = {
     }
 };
 
-module.exports = splashscreen;
+module.exports = serviceDiscovery;
