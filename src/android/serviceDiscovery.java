@@ -6,25 +6,17 @@ import org.json.JSONException;
 import java.io.IOException;
 
 public class serviceDiscovery extends CordovaPlugin {
-	
-	CallbackContext context;
 
 	@Override
-    public boolean execute(String action, JSONArray data, CallbackContext callbackContext) throws JSONException {
+    public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) {
 		context = callbackContext;
 		
-		/*
-        if (action.equals("getNetworkServices")) {
-			return true;
-		}
-		
-		return false;
-		*/
-
-        final cordovaSSDP mCordovaSSDP = new cordovaSSDP(this.cordova.getActivity().getApplicationContext());
+        //final cordovaSSDP mCordovaSSDP = new cordovaSSDP(this.cordova.getActivity().getApplicationContext());
 
         if (action.equals("getNetworkServices")) {
 
+			callbackContext.success('aaa-bbb-ccc');
+			/*
             final String service = data.getString(0);
 
             cordova.getThreadPool().execute(new Runnable() {
@@ -37,6 +29,7 @@ public class serviceDiscovery extends CordovaPlugin {
                     }
                }
             });  
+			*/
             return true;
 
         } else {
