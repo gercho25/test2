@@ -25,12 +25,14 @@ import android.content.Context;
 public class cordovaSSDP extends CordovaPlugin {
 
     private static final String TAG = "scott.plugin.cordovaSSDP";
-    private JSONArray mDeviceList;
-    private Context mContext;
+    //private JSONArray mDeviceList;
+    //private Context mContext;
 
+	/*
     public cordovaSSDP(Context context){
         mContext = context;
     }
+	*/
 
     public static String parseHeaderValue(String content, String headerName) {
         Scanner s = new Scanner(content);
@@ -50,6 +52,7 @@ public class cordovaSSDP extends CordovaPlugin {
         return null;
     }
 
+	/*
     private void createServiceObjWithXMLData(String url, final JSONObject jsonObj) {
 
         SyncHttpClient syncRequest = new SyncHttpClient();
@@ -71,6 +74,7 @@ public class cordovaSSDP extends CordovaPlugin {
             }
         });
     }
+	*/
 
     public void search(String service, CallbackContext callbackContext) throws IOException {
         final int SSDP_PORT = 1900;
@@ -82,8 +86,9 @@ public class cordovaSSDP extends CordovaPlugin {
         InetSocketAddress dstAddress = new InetSocketAddress(InetAddress.getByName(SSDP_IP), SSDP_PORT);
 
         // Clear the cached Device List every time a new search is called
-        mDeviceList = new JSONArray();
-		
+		JSONArray deviceList = new JSONArray();
+
+        Log.v(TAG, "srcAddress" + srcAddress);
 		
 		
 		
@@ -116,21 +121,25 @@ public class cordovaSSDP extends CordovaPlugin {
             multicast = new MulticastSocket(null);
             multicast.bind(srcAddress);
             multicast.setTimeToLive(4);
+			Log.v(TAG, "Send multicast request...");
+            // ----- Sending multi-cast packet ----- //
             multicast.send(discoveryPacket);
         } finally {
+			Log.v(TAG, "Multicast ends. Close connection....");
             multicast.disconnect();
             multicast.close();
         }
 
-        // Create a socket and wait for the response
+        // Create a socket and cross your fingers for a response
         DatagramSocket wildSocket = null;
-        DatagramPacket receivePacket;
+        DatagramPacket receivePacket = null;
         try {
             wildSocket = new DatagramSocket(SSDP_SEARCH_PORT);
             wildSocket.setSoTimeout(TIMEOUT);
 
             while (true) {
                 try {
+					Log.v(TAG, "Receive ssdp");
                     receivePacket = new DatagramPacket(new byte[1536], 1536);
                     wildSocket.receive(receivePacket);
                     String message = new String(receivePacket.getData());   
@@ -140,11 +149,14 @@ public class cordovaSSDP extends CordovaPlugin {
                         device.put("LOCATION", parseHeaderValue(message, "LOCATION"));
                         device.put("ST", parseHeaderValue(message, "ST"));
                         device.put("Server", parseHeaderValue(message, "Server"));
-                        createServiceObjWithXMLData(parseHeaderValue(message, "LOCATION"), device);
+                        //createServiceObjWithXMLData(parseHeaderValue(message, "LOCATION"), device);
+						deviceList.put(device);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 } catch (SocketTimeoutException e) {
+					Log.v(TAG, "Time out");
+                    Log.v(TAG, "" + deviceList);
                     callbackContext.success(mDeviceList);
                     break;
                 }
@@ -155,10 +167,7 @@ public class cordovaSSDP extends CordovaPlugin {
                 wildSocket.close();
             }
         }
-		
-		//TODO G: 
-		callbackContext.success("zzz...");
-		
+
     }
 
 }
