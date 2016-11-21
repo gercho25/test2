@@ -157,7 +157,7 @@ public class cordovaSSDP extends CordovaPlugin {
                 } catch (SocketTimeoutException e) {
 					Log.v(TAG, "Time out");
                     Log.v(TAG, "" + deviceList);
-                    callbackContext.success(mDeviceList);
+                    callbackContext.success(deviceList);
                     break;
                 }
             }
