@@ -10,7 +10,7 @@ public class serviceDiscovery extends CordovaPlugin {
 	@Override
     public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) {
 		
-        final cordovaSSDP mCordovaSSDP = new cordovaSSDP(this.cordova.getActivity().getApplicationContext());
+        final cordovaSSDP mCordovaSSDP = new cordovaSSDP();
 
         if (action.equals("getNetworkServices")) {
 
