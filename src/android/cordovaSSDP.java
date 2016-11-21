@@ -83,7 +83,19 @@ public class cordovaSSDP extends CordovaPlugin {
 
         // Clear the cached Device List every time a new search is called
         mDeviceList = new JSONArray();
+		
+		
+		
+		
+		callbackContext.success(mDeviceList);
+		
+		
+		
+		
+		
+		
 
+		/*
         // M-Search Packet
         StringBuffer discoveryMessage = new StringBuffer();
         discoveryMessage.append("M-SEARCH * HTTP/1.1\r\n");
@@ -143,6 +155,7 @@ public class cordovaSSDP extends CordovaPlugin {
                 wildSocket.close();
             }
         }
+		*/
     }
 
 }
