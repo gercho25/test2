@@ -25,14 +25,6 @@ import android.content.Context;
 public class cordovaSSDP extends CordovaPlugin {
 
     private static final String TAG = "scott.plugin.cordovaSSDP";
-    //private JSONArray mDeviceList;
-    //private Context mContext;
-
-	/*
-    public cordovaSSDP(Context context){
-        mContext = context;
-    }
-	*/
 
     public static String parseHeaderValue(String content, String headerName) {
         Scanner s = new Scanner(content);
@@ -52,30 +44,6 @@ public class cordovaSSDP extends CordovaPlugin {
         return null;
     }
 
-	/*
-    private void createServiceObjWithXMLData(String url, final JSONObject jsonObj) {
-
-        SyncHttpClient syncRequest = new SyncHttpClient();
-        syncRequest.get(mContext.getApplicationContext(), url, new AsyncHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                try {
-                    JSONObject device = jsonObj;
-                    device.put("xml", new String(responseBody));
-                    mDeviceList.put(device);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-            @Override
-            public void onFailure(int statusCode, Header[] headers, byte[] responseBody,
-                                  Throwable error) {
-                LOG.e(TAG, responseBody.toString());
-            }
-        });
-    }
-	*/
-
     public void search(String service, CallbackContext callbackContext) throws IOException {
         final int SSDP_PORT = 1900;
         final int SSDP_SEARCH_PORT = 1901;
@@ -90,17 +58,6 @@ public class cordovaSSDP extends CordovaPlugin {
 
         LOG.d(TAG, "srcAddress" + srcAddress);
 		
-		
-		
-		//callbackContext.success(mDeviceList);
-		
-		
-		
-		
-		
-		
-
-
         // M-Search Packet
         StringBuffer discoveryMessage = new StringBuffer();
         discoveryMessage.append("M-SEARCH * HTTP/1.1\r\n");

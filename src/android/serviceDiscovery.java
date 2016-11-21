@@ -13,10 +13,8 @@ public class serviceDiscovery extends CordovaPlugin {
         final cordovaSSDP mCordovaSSDP = new cordovaSSDP();
 
         if (action.equals("getNetworkServices")) {
-
-			//callbackContext.success("aaa-bbb-ccc");
 			
-            final String service = "ssdp:all"; //args.getString(0);
+            final String service = args.getString(0); //"ssdp:all"; //
 
             cordova.getThreadPool().execute(new Runnable() {
                @Override
