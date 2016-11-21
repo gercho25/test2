@@ -10,13 +10,14 @@ public class serviceDiscovery extends CordovaPlugin {
 	@Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 		
+		/*
         if (action.equals("getNetworkServices")) {
 			return true;
 		}
 		
 		return false;
-		
-	/*
+		*/
+
         final cordovaSSDP mCordovaSSDP = new cordovaSSDP(this.cordova.getActivity().getApplicationContext());
 
         if (action.equals("getNetworkServices")) {
@@ -40,7 +41,6 @@ public class serviceDiscovery extends CordovaPlugin {
             return false;
 
         }
-		*/
 		
     }
 }
