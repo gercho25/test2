@@ -144,14 +144,16 @@ NSMutableArray *serviceArr;
 
     NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
 
+	NSString *part1;
+	NSString *part2;
+	
     int i = 0;
     for (i = 0; i < [msgLines count]; i++)
     {
      //   NSLog(@"working on:%@", msgLines[i]);
         NSRange range = [msgLines[i] rangeOfString:@":"];
 
-		NSString *part1;
-		NSString *part2;
+		
 		
         if(range.length == 1){
             NSRange p1range = NSMakeRange(0, range.location);
@@ -170,10 +172,11 @@ NSMutableArray *serviceArr;
             data[part1] = part2;
         }
 		
-		part1 = @"aaa";
-		part2 = @"bbb";
-		data[part1] = part2;
     }
+	
+	part1 = @"aaa";
+	part2 = @"bbb";
+	data[part1] = part2;
 	
     [serviceArr addObject: data];
 
