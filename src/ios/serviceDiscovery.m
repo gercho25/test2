@@ -165,9 +165,11 @@ NSMutableArray *serviceArr;
             data[part1] = part2;
         }
 		
+		/*
 		NSString *a = @"aaa";
 		NSString *b = @"bbb";
 		data[part1] = part2;
+		*/
     }
 	
     [serviceArr addObject: data];
