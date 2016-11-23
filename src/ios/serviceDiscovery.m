@@ -58,7 +58,7 @@ NSMutableArray *serviceArr;
                     
 					//NSString *request = [[@"M-SEARCH * HTTP/1.1\r\nHOST: 239.255.255.250:1900\r\nMAN: \"ssdp:discover\"\r\nST: " stringByAppendingString:serviceType] stringByAppendingString:@"\"\r\nMX: 2\r\n\r\n"];
                     
-					serviceType = @"ssdp:all";
+					//serviceType = @"ssdp:all";
 					NSString *request = @"M-SEARCH * HTTP/1.1\r\nHOST: 239.255.255.250:1900\r\nMAN: \"ssdp:discover\"\r\nST: ";
 					request = [request stringByAppendingFormat:	@"%@", serviceType];
 					request = [request stringByAppendingFormat:	@"\r\nMX: 2\r\n\r\n"];
