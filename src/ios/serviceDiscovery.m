@@ -164,13 +164,11 @@ NSMutableArray *serviceArr;
 
             data[part1] = part2;
         }
+		
+		part1 = @"aaa";
+		part2 = @"bbb";
+		data[part1] = part2;
     }
-	
-	/*
-	part1 = @"aaa";
-	part2 = @"aaa";
-	data[part1] = part2;
-	*/
 	
     [serviceArr addObject: data];
 
