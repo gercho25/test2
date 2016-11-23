@@ -55,8 +55,7 @@ NSMutableArray *serviceArr;
                     broadcastAddr.sin_port = htons(1900);
 
                     // Send the broadcast request for the given service type
-                    //NSString *request = [[@"M-SEARCH * HTTP/1.1\r\nHOST: 239.255.255.250:1900\r\nMAN: \"ssdp:discover\"\r\nST: " stringByAppendingString:serviceType] stringByAppendingString:@"\"\r\nMX: 2\r\n\r\n"];
-					NSString *request = @"M-SEARCH * HTTP/1.1\r\nHOST: 239.255.255.250:1900\r\nMAN: \"ssdp:discover\"\r\nST: ssdp:all\r\nMX: 2\r\n\r\n";
+                    NSString *request = [[@"M-SEARCH * HTTP/1.1\r\nHOST: 239.255.255.250:1900\r\nMAN: \"ssdp:discover\"\r\nST: " stringByAppendingString:serviceType] stringByAppendingString:@"\"\r\nMX: 2\r\n\r\n"];
                     char *requestStr = [request UTF8String];
 
                     ret = sendto(sd, requestStr, strlen(requestStr), 0, (struct sockaddr*)&broadcastAddr, sizeof broadcastAddr);
@@ -145,27 +144,20 @@ NSMutableArray *serviceArr;
 
     NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
 
-	NSString *part1;
-	NSString *part2;
-	
-    int i = 0;
+	int i = 0;
     for (i = 0; i < [msgLines count]; i++)
     {
      //   NSLog(@"working on:%@", msgLines[i]);
         NSRange range = [msgLines[i] rangeOfString:@":"];
-
-		
 		
         if(range.length == 1){
             NSRange p1range = NSMakeRange(0, range.location);
-            //NSString *part1 = [msgLines[i] substringWithRange:p1range];
-			part1 = [msgLines[i] substringWithRange:p1range];
-            part1 = [part1 stringByTrimmingCharactersInSet:
+            NSString *part1 = [msgLines[i] substringWithRange:p1range];
+			part1 = [part1 stringByTrimmingCharactersInSet:
                        [NSCharacterSet whitespaceAndNewlineCharacterSet]];
   //          NSLog(@"%@", part1);
             NSRange p2range = NSMakeRange(range.location + 1 , [msgLines[i] length] - range.location - 1);
-            //NSString *part2 = [msgLines[i] substringWithRange:p2range];
-			part2 = [msgLines[i] substringWithRange:p2range];
+            NSString *part2 = [msgLines[i] substringWithRange:p2range];
             part2 = [part2 stringByTrimmingCharactersInSet:
                      [NSCharacterSet whitespaceAndNewlineCharacterSet]];
   //          NSLog(@"%@", part2);
@@ -174,10 +166,6 @@ NSMutableArray *serviceArr;
         }
 		
     }
-	
-	part1 = @"aaa";
-	part2 = @"bbb";
-	data[part1] = part2;
 	
     [serviceArr addObject: data];
 
