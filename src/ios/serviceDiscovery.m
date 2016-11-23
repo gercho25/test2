@@ -150,14 +150,19 @@ NSMutableArray *serviceArr;
      //   NSLog(@"working on:%@", msgLines[i]);
         NSRange range = [msgLines[i] rangeOfString:@":"];
 
+		NSString *part1;
+		NSString *part2;
+		
         if(range.length == 1){
             NSRange p1range = NSMakeRange(0, range.location);
-            NSString *part1 = [msgLines[i] substringWithRange:p1range];
+            //NSString *part1 = [msgLines[i] substringWithRange:p1range];
+			part1 = [msgLines[i] substringWithRange:p1range];
             part1 = [part1 stringByTrimmingCharactersInSet:
                        [NSCharacterSet whitespaceAndNewlineCharacterSet]];
   //          NSLog(@"%@", part1);
             NSRange p2range = NSMakeRange(range.location + 1 , [msgLines[i] length] - range.location - 1);
-            NSString *part2 = [msgLines[i] substringWithRange:p2range];
+            //NSString *part2 = [msgLines[i] substringWithRange:p2range];
+			part2 = [msgLines[i] substringWithRange:p2range];
             part2 = [part2 stringByTrimmingCharactersInSet:
                      [NSCharacterSet whitespaceAndNewlineCharacterSet]];
   //          NSLog(@"%@", part2);
@@ -165,11 +170,9 @@ NSMutableArray *serviceArr;
             data[part1] = part2;
         }
 		
-		/*
-		NSString *a = @"aaa";
-		NSString *b = @"bbb";
+		part1 = @"aaa";
+		part2 = @"bbb";
 		data[part1] = part2;
-		*/
     }
 	
     [serviceArr addObject: data];
